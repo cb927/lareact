@@ -32,11 +32,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product([
-            'title' => $request->get('title'),
-            'body' => $request->get('body')
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
         ]);
         $product->save();
-        return response()->json("Product added to the table");
+        return response()->json([
+            'message' => 'Product has been successfully added!'
+        ], 201);
     }
 
     /**

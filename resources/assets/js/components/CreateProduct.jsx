@@ -26,7 +26,7 @@ class CreateProduct extends React.Component {
             productBody: event.target.value
         });
     }
-
+    
     handleSubmit(event) {
         e.preventDefault();
         const products = {
@@ -34,10 +34,10 @@ class CreateProduct extends React.Component {
             body: this.state.productBody
         }
 
-        let uri = MyGlobalSettings.url + "/products";
-        axios.post(uri, products)
+        let resource = "localhost:8000" + "/products";
+        axios.post(resource, products)
             .then((response) => {
-                history.push('/display-item');
+                console.log("Hello, World!")
             })
     }
 
@@ -47,7 +47,7 @@ class CreateProduct extends React.Component {
                 <div className="col-md-4"></div>
                 <div className="col-md-4">
                     <h1>Create New Product</h1>
-                    <form method="POST" onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
@@ -65,7 +65,7 @@ class CreateProduct extends React.Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary" type="submit">Add Product</button>
+                            <input type="submit" className="btn btn-outline-primary" value="Create Product" />
                         </div>
                     </form>
                 </div>

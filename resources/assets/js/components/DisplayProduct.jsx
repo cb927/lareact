@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TableRow from './TableRow';
 import MyGlobalSettings from './MyGlobalSettings';
@@ -10,13 +9,13 @@ class DisplayProduct extends React.Component {
         this.state = { value: '', products: '' };
     }
 
-    componentMounted() {
-        axios.get(MyGlobalSettings.url + "/products")
-            .then((response) => {
-                this.setState({ products: this.data });
+    componentDidMount() {
+        axios.get("http://localhost:8000/products")
+            .then(response => {
+                this.setState({ products: response.data })
             })
-            .catch(function (err) {
-                console.log(err);
+            .catch(error => {
+                console.log(error);
             });
     }
 

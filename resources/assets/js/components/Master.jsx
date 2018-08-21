@@ -16,7 +16,14 @@ const brandStyle = {
     borderRadius: "15px"
 }
 
+const navbarItemsStyle = {
+    padding: ".5em",
+    margin: ".5em",
+    borderRadius: "10px"
+}
+
 class Master extends React.Component {
+    
     render() {
         return (
             <div>
@@ -27,22 +34,19 @@ class Master extends React.Component {
                     </button>
                     <div className="collapse navbar-collapse" id="myNav">
                         <ul className="navbar-nav mr-auto">
-                            <li className="navbar-item">
+                            <li className="navbar-item" style={navbarItemsStyle}>
                                 <Link to="/">Home</Link>
                             </li>
-                            <li className="navbar-item">
+                            <li className="navbar-item" style={navbarItemsStyle}>
                                 <Link to="add-item">Create Product</Link>
                             </li>
-                            <li className="navbar-item">
+                            <li className="navbar-item" style={navbarItemsStyle}>
                                 <Link to="display-item">Products</Link>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <Description />
-                <div>
-                    {this.props.children}
-                </div>
+                <Description view={this.props.children} />
             </div>
         );
     }
