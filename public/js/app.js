@@ -60734,6 +60734,7 @@ var Description = function (_React$Component) {
                         " project RESTful service provided by ",
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "rounded", src: "img/microstrategy.png", alt: "MicroStrategy logo", style: msLogoStyle })
                     ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "h2",
                         null,
@@ -60935,7 +60936,7 @@ var DisplayProduct = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            axios.get("http://localhost:8000/products").then(function (response) {
+            axios.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobalSettings__["a" /* default */].url + "/products").then(function (response) {
                 _this2.setState({ products: response.data });
             }).catch(function (error) {
                 console.log(error);
@@ -61063,7 +61064,7 @@ var TableRow = function (_React$Component) {
         key: 'handleSubmit',
         value: function handleSubmit(event) {
             event.preventDefault();
-            var resource = __WEBPACK_IMPORTED_MODULE_3__MyGlobalSettings__["a" /* default */].url + "/products/${this.props.obj.id}";
+            var resource = __WEBPACK_IMPORTED_MODULE_3__MyGlobalSettings__["a" /* default */].url + "/products" + this.props.obj.id;
             axios.delete(resource);
             history.push('/display-item');
         }
@@ -61093,7 +61094,7 @@ var TableRow = function (_React$Component) {
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* Link */],
-                        { to: '/edit/${this.props.id}', className: 'btn btn-sm btn-info' },
+                        { to: "edit/" + this.props.obj.id, className: 'btn btn-sm btn-info' },
                         'Edit'
                     )
                 ),
@@ -61207,50 +61208,76 @@ var UpdateProduct = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'row' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-md-10' }),
+                    { className: 'alert alert-info' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md2' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["a" /* Link */],
-                            { to: '/display-item', className: 'btn btn-success' },
-                            'Back'
-                        )
+                        'h3',
+                        null,
+                        'ID: ',
+                        this.state.id
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h3',
+                        null,
+                        'Title: ',
+                        this.state.title
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h3',
+                        null,
+                        'Body: ',
+                        this.state.body
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { onSubmit: this.handleSubmit },
+                    'div',
+                    { className: 'row' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'form-group' },
+                        { className: 'col-md-4' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'label',
-                            null,
-                            'Product Title'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', value: this.state.title, onChange: this.handleChange1 })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'label',
-                            { name: 'product_body' },
-                            'Product Body'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { className: 'form-control', onChange: this.handleChange2, value: this.state.body })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'button',
-                            { className: 'btn btn-primary', type: 'submit' },
-                            'Update'
+                            __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["a" /* Link */],
+                            { to: '/display-item', className: 'btn btn-warning' },
+                            'Go Back'
                         )
-                    )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'col-md-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'form',
+                            { onSubmit: this.handleSubmit },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'label',
+                                    null,
+                                    'Product Title:'
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleChange1, value: this.state.title })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'label',
+                                    null,
+                                    'Product Body:'
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { className: 'form-control', onChange: this.handleChange2, value: this.state.body })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'button',
+                                    { className: 'btn btn-success', type: 'submit' },
+                                    'Update Product'
+                                )
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-md-4' })
                 )
             );
         }

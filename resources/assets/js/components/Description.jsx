@@ -17,6 +17,7 @@ class Description extends React.Component {
             <div>
                 <div className="jumbotron text-center">
                     <h1><strong>VALUTA</strong> project RESTful service provided by <img className="rounded" src="img/microstrategy.png" alt="MicroStrategy logo" style={msLogoStyle} /></h1>
+                    <hr/>
                     <h2>Департамент інформаційних технологій</h2>
                     <h3>Національний банк України</h3>
                     <hr/>

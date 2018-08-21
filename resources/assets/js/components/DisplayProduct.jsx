@@ -10,7 +10,7 @@ class DisplayProduct extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8000/products")
+        axios.get(MyGlobalSettings.url + "/products")
             .then(response => {
                 this.setState({ products: response.data })
             })

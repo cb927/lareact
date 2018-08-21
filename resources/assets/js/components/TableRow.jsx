@@ -13,7 +13,7 @@ class TableRow extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let resource = MyGlobalSettings.url + "/products/${this.props.obj.id}";
+        let resource = MyGlobalSettings.url + "/products" + this.props.obj.id;
         axios.delete(resource);
         history.push('/display-item');
     }
@@ -25,7 +25,7 @@ class TableRow extends React.Component {
                 <td>{this.props.obj.title}</td>
                 <td>{this.props.obj.body}</td>
                 <td>
-                    <Link to="/edit/${this.props.id}" className="btn btn-sm btn-info">Edit</Link>
+                    <Link to={"edit/" + this.props.obj.id} className="btn btn-sm btn-info">Edit</Link>
                 </td>
                 <td>
                     <form onSubmit={this.handleSubmit}>
