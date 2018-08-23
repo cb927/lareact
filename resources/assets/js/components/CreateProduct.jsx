@@ -1,8 +1,5 @@
 import React from 'react';
-import createBrowserHistory from 'history/createBrowserHistory';
 import MyGlobalSettings from './MyGlobalSettings';
-
-const history = createBrowserHistory();
 
 class CreateProduct extends React.Component {
 
@@ -34,10 +31,10 @@ class CreateProduct extends React.Component {
             body: this.state.productBody
         }
 
-        let resource = "localhost:8000" + "/products";
+        let resource = MyGlobalSettings.url + "/products";
         axios.post(resource, products)
             .then((response) => {
-                console.log("Hello, World!")
+                this.props.history.push("/display-item");
             })
     }
 

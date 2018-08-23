@@ -6,16 +6,21 @@ import MyGlobalSettings from './MyGlobalSettings';
 class UpdateProduct extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { title: '', body: '' };
+        this.state = {
+            id: '',
+            title: '',
+            body: ''
+        };
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentMounted() {
-        axios.get(MyGlobalSettings.url + "/products/${this.props.params.id}/edit")
+    componentDidMount() {
+        axios.get(MyGlobalSettings.url + "/products/" + this.props.match.params.id + "/edit")
             .then((response) => {
-                this.setState({ title: response.data.title, body: response.data.body });
+                this.setState({ title: response.data.title, body: response.data.body, id:response.data.id });
+                console.log(this.state.title + this.state.body)
             })
             .catch(function (err) {
                 console.log(err);
@@ -24,13 +29,13 @@ class UpdateProduct extends React.Component {
 
     handleChange1(event) {
         this.setState({
-            title: e.target.value
+            title: event.target.value
         });
     }
 
     handleChange2(event) {
         this.setState({
-            body: e.target.value
+            body: event.target.value
         });
     }
 
@@ -40,7 +45,7 @@ class UpdateProduct extends React.Component {
             title: this.state.title,
             body: this.state.body
         }
-        let url = MyGlobalSettings.url + "/products/${this.props.params.id}";
+        let uri = MyGlobalSettings.url + "/products/" + this.props.match.params.id;
         axios.put(uri, products).then((response) => {
             this.props.history.push('/display-item');
         });
@@ -52,9 +57,9 @@ class UpdateProduct extends React.Component {
                 <h1>Update Product</h1>
 
                 <div className="alert alert-info">
-                    <h3>ID: {this.state.id}</h3>
-                    <h3>Title: {this.state.title}</h3>
-                    <h3>Body: {this.state.body}</h3>
+                    <h3>ID: <strong>{ this.state.id }</strong></h3>
+                    <h3>Title: <strong>{this.state.title}</strong></h3>
+                    <h3>Body: <strong>{this.state.body}</strong></h3>
                 </div>
 
                 <div className="row">

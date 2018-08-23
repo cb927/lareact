@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
 import MyGlobalSettings from './MyGlobalSettings';
-
-let history = createBrowserHistory();
 
 class TableRow extends React.Component {
     constructor(props) {
@@ -13,9 +10,9 @@ class TableRow extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let resource = MyGlobalSettings.url + "/products" + this.props.obj.id;
+        let resource = MyGlobalSettings.url + "/products/" + this.props.obj.id;
         axios.delete(resource);
-        history.push('/display-item');
+        this.props.history.push("/display-item");
     }
 
     render() {

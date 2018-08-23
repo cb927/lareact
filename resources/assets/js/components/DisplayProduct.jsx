@@ -31,20 +31,16 @@ class DisplayProduct extends React.Component {
         return (
             <div>
                 <h1>Products</h1>
-                <div className="row">
-                    <div className="col-md-10"></div>
-                    <div className="col-md-2">
-                        <Link to="/add-item">Create Product</Link>
-                    </div>
-                </div>
+                <Link to="/add-item" className="btn btn-primary">Create Product</Link>
+                <br/>
 
-                <table className="table table-bordered">
+                <table className="table table-striped table-dark table-responsive">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Product Title</th>
                             <th>Product Body</th>
-                            <th width="200px">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
